@@ -51,10 +51,16 @@ function init() {
     //color indexing the time slots
     checkPresent();
     //retrieve data from local storage
-    savedTasks = JSON.parse(localStorage.getItem("tasks"));
+    stored = JSON.parse(localStorage.getItem("tasks"));
+    if (stored != null) {
+        savedTasks = stored;
+    }
+    console.log(savedTasks);
     //display individual tasks
     for (var i=0;i<timeSlots.length;i++) {
-        $(".description").eq(i).val(savedTasks[i]);
+        if (savedTasks[i] != ""){
+            $(".description").eq(i).val(savedTasks[i]);
+        }
     }
 }
 
