@@ -10,7 +10,7 @@ timeSlots = $(".time-block");
 function checkPresent() {
 
     //set up for comparison between time slot and current time
-    index = moment().format("H") -8;
+    index = moment().format("H") - 9;
 
     //comparison for each time slot, add class to change background color
     for (var i=0;i<timeSlots.length;i++) {
@@ -32,15 +32,13 @@ $(".saveBtn").on("click", function(event) {
     
     //only the clicked button is affected
     element = $(event.target);
-    //button id for reference
+    //button id for reference to get info typed in typebox
     buttonID = element.closest(".row").find("button").attr("id").substring(1,2);
     info = $(".container").find(".description").eq(buttonID).val();
 
-    //if input valid, then save to variable and save to local storage
-    if ((info != "") && (info != null)) {
-        savedTasks[buttonID] = info;
-        localStorage.setItem("tasks",JSON.stringify(savedTasks));
-    }
+    //save to variable and save to local storage
+    savedTasks[buttonID] = info;
+    localStorage.setItem("tasks",JSON.stringify(savedTasks));
 })
 
 function init() {
